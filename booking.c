@@ -2,19 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define ROWS 5    // Number of rows in the seating chart
-#define COLS 5    // Number of seats per row
-
-// Function to display the seating chart
 void displaySeats(char seats[ROWS][COLS]) {
     printf("Seating Chart:\n");
-    printf("   "); // Header spacing
+    printf("   ");
     for (int i = 0; i < COLS; i++) {
         printf("%3d", i + 1);
     }
     printf("\n");
     for (int i = 0; i < ROWS; i++) {
-        printf("%2d ", i + 1); // Row numbers
+        printf("%2d ", i + 1); 
         for (int j = 0; j < COLS; j++) {
             printf(" %c ", seats[i][j]);
         }
@@ -22,16 +18,15 @@ void displaySeats(char seats[ROWS][COLS]) {
     }
 }
 
-// Function to book a random seat
 void bookRandomSeats(char seats[ROWS][COLS], int numSeats) {
     int booked = 0;
-    srand(time(NULL)); // Initialize random number generator
+    srand(time(NULL)); 
     while (booked < numSeats) {
-        int row = rand() % ROWS; // Random row index
-        int col = rand() % COLS; // Random column index
+        int row = rand() % ROWS; 
+        int col = rand() % COLS; 
 
-        if (seats[row][col] == 'A') { // 'A' means Available
-            seats[row][col] = 'B';   // 'B' means Booked
+        if (seats[row][col] == 'A') { 
+            seats[row][col] = 'B'; 
             printf("Seat booked: Row %d, Seat %d\n", row + 1, col + 1);
             booked++;
         }
@@ -41,8 +36,6 @@ void bookRandomSeats(char seats[ROWS][COLS], int numSeats) {
 int main() {
     char seats[ROWS][COLS];
     int numSeats;
-
-    // Initialize all seats to 'A' (Available)
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             seats[i][j] = 'A';
@@ -52,7 +45,6 @@ int main() {
     printf("Welcome to the Seat Booking System!\n");
     displaySeats(seats);
 
-    // Ask user how many seats they want to book
     printf("Enter the number of seats to book randomly: ");
     scanf("%d", &numSeats);
 
@@ -61,10 +53,8 @@ int main() {
         return 1;
     }
 
-    // Book random seats
     bookRandomSeats(seats, numSeats);
 
-    // Display the updated seating chart
     printf("\nUpdated ");
     displaySeats(seats);
 
